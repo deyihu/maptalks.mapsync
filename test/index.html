@@ -60,7 +60,8 @@
 <body>
     <div class="panel">
         <button onclick="addMap()">add map5 to sync</button><br><br>
-        <button onclick="removeMap()">remove map5 from sync</button>
+        <button onclick="removeMap()">remove map5 from sync</button><br><br>
+        <button onclick="setMainMap()">set map4 to main map</button>
     </div>
     <div class="container">
 
@@ -103,6 +104,12 @@
 
         function removeMap() {
             mapSyncControl.removeMap(maps[4]);
+        }
+
+
+        function setMainMap() {
+            mapSyncControl.setMainMap(maps[3]);
+            maps[3].setZoom(6);
         }
 
     </script>
