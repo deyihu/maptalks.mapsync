@@ -1,9 +1,9 @@
 {
-  "name": "mapsync",
+  "name": "maptalks.mapsync",
   "version": "0.1.0",
   "description": "",
   "module": "index.js",
-  "main": "./dist/mapsync.js",
+  "main": "./dist/maptalks.mapsync.js.js",
   "scripts": {
     "lint": "eslint ./*.js",
     "build": "npm run lint && cross-env NODE_ENV=dev  rollup -c",
