@@ -104,6 +104,26 @@ export class MapSync {
         return this;
     }
 
+    setMainMap(map) {
+        const result = this._validateMap(map);
+        if (!result) {
+            return this;
+        }
+        const d = this.find(map);
+        if (!d) {
+            return this;
+        }
+        if (d.map === this.currentMap) {
+            return this;
+        }
+        if (this.currentMap) {
+            this.currentMap.off(EVENTS, this._mapViewChangeHandler, this);
+        }
+        this.currentMap = map;
+        map.on(EVENTS, this._mapViewChangeHandler, this);
+        return this;
+    }
+
     dispose() {
         this.list.forEach(d => {
             DomUtil.off(d.container, 'mousemove', this._containerMousemoveHandler, this);
