@@ -1,6 +1,6 @@
 {
   "name": "maptalks.mapsync",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "",
   "module": "index.js",
   "main": "./dist/maptalks.mapsync.js",
@@ -33,5 +33,9 @@
     "rollup-plugin-json": "^3.1.0",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-terser": "^7.0.2"
-  }
+  },
+  "files": [
+    "dist",
+    "index.js"
+  ]
 }
