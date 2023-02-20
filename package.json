@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "module": "index.js",
-  "main": "./dist/maptalks.mapsync.js.js",
+  "main": "./dist/maptalks.mapsync.js",
   "scripts": {
     "lint": "eslint ./*.js",
     "build": "npm run lint && cross-env NODE_ENV=dev  rollup -c",
