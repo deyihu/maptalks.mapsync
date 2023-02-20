@@ -2,6 +2,10 @@
 
 [maptalks](https://github.com/maptalks/maptalks.js) Map synchronization tool
 
+The map will become the main map when the mouse enters the container of the map
+
+if you want switch main map ,you can use `setMainMap` method
+
 ## Install
 
 ### NPM
@@ -28,7 +32,7 @@ yarn add maptalks.mapsync
 ### constructor(maps)
 
 ```js
-improt {
+import {
     MapSync
 }
 from 'maptalks.mapsync'
@@ -36,7 +40,7 @@ from 'maptalks.mapsync'
 const mapSyncControl = new MapSync(maps);
 
 // if you use cdn
-const mapSyncControl = new maptalks.MapSync(maps);
+// const mapSyncControl = new maptalks.MapSync(maps);
 ```
 
 ### methods
@@ -60,6 +64,12 @@ mapSyncControl.addMap(map);
 
 ```js
 mapSyncControl.removeMap(map);
+```
+
+* setMainMap(map) `set main map for Drive other maps`
+
+```js
+mapSyncControl.setMainMap(map);
 ```
 
 * dispose()
