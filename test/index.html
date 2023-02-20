@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>maps sync control</title>
+<style type="text/css">
+    html,
+    body {
+        margin: 0px;
+        height: 100%;
+        width: 100%
+    }
+
+    .container {
+        width: 100%;
+        height: 50%;
+
+        display: flex;
+        flex-direction: row;
+
+    }
+
+
+    .map {
+        height: 100%;
+    }
+
+    .split {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .gutter {
+        background-color: #eee;
+        background-repeat: no-repeat;
+        background-position: 50%;
+    }
+
+    .gutter.gutter-horizontal {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+        cursor: col-resize;
+        background-color: white;
+    }
+
+    .panel {
+        right: 10px;
+        top: 10px;
+        position: absolute;
+        z-index: 1;
+        background-color: white;
+        border: 1px solid gray;
+        padding: 20px;
+    }
+</style>
+<link rel="stylesheet" href="https://unpkg.com/maptalks/dist/maptalks.css">
+<script type="text/javascript" src="https://unpkg.com/maptalks/dist/maptalks.min.js"></script>
+<script type="text/javascript" src="./../dist/mapsync.js"></script>
+<script type="text/javascript" src="https://unpkg.com/split.js@1.6.5/dist/split.min.js"></script>
+
+<body>
+    <div class="panel">
+        <button onclick="addMap()">add map5 to sync</button><br><br>
+        <button onclick="removeMap()">remove map5 from sync</button>
+    </div>
+    <div class="container">
+
+        <div id="map1" class="map"></div>
+        <div id="map2" class="map"></div>
+        <div id="map3" class="map"></div>
+    </div>
+    <div class="container">
+        <div id="map4" class="map"></div>
+        <div id="map5" class="map"></div>
+    </div>
+    </div>
+
+    <script>
+        const mapIds = ['map1', 'map2', 'map3', 'map4', 'map5'];
+        Split(mapIds.slice(0, 3).map(id => {
+            return '#' + id;
+        }));
+        Split(mapIds.slice(3, 5).map(id => {
+            return '#' + id;
+        }));
+        const maps = mapIds.map(id => {
+            return new maptalks.Map(id, {
+                center: [-0.113049, 51.498568],
+                zoom: 14,
+                baseLayer: new maptalks.TileLayer('base', {
+                    urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+                    subdomains: ["a", "b", "c", "d"],
+                    attribution: '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>'
+                })
+            });
+        })
+
+        const mapSyncControl = new mapsync.MapSync(maps.slice(0, 4));
+
+
+        function addMap() {
+            mapSyncControl.addMap(maps[4]);
+        }
+
+        function removeMap() {
+            mapSyncControl.removeMap(maps[4]);
+        }
+
+    </script>
+</body>
+
+</html>
