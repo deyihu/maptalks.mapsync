@@ -36,7 +36,7 @@ export default [
         plugins: plugins,
         output: {
             'format': 'umd',
-            'name': 'mapsync',
+            'name': 'maptalks',
             'file': `dist/${FILEMANE}.js`,
             'sourcemap': sourceMap,
             'extend': true,
@@ -64,7 +64,7 @@ export default [
         plugins: plugins.concat([terser()]),
         output: {
             'format': 'umd',
-            'name': 'mapsync',
+            'name': 'maptalks',
             'file': `dist/${FILEMANE}.min.js`,
             'sourcemap': false,
             'extend': true,
