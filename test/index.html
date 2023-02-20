@@ -54,7 +54,7 @@
 </style>
 <link rel="stylesheet" href="https://unpkg.com/maptalks/dist/maptalks.css">
 <script type="text/javascript" src="https://unpkg.com/maptalks/dist/maptalks.min.js"></script>
-<script type="text/javascript" src="./../dist/mapsync.js"></script>
+<script src="https://unpkg.com/maptalks.mapsync/dist/maptalks.mapsync.js"></script>
 <script type="text/javascript" src="https://unpkg.com/split.js@1.6.5/dist/split.min.js"></script>
 
 <body>
@@ -94,7 +94,7 @@
             });
         })
 
-        const mapSyncControl = new mapsync.MapSync(maps.slice(0, 4));
+        const mapSyncControl = new maptalks.MapSync(maps.slice(0, 4));
 
 
         function addMap() {
