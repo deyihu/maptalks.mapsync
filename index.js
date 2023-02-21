@@ -62,8 +62,7 @@ export class MapSync {
     }
 
     addMap(map) {
-        const result = this._validateMap(map);
-        if (!result) {
+        if (!this._validateMap(map)) {
             return this;
         }
         let d = this.find(map);
@@ -82,8 +81,7 @@ export class MapSync {
     }
 
     removeMap(map) {
-        const result = this._validateMap(map);
-        if (!result) {
+        if (!this._validateMap(map)) {
             return this;
         }
         const d = this.find(map);
@@ -105,8 +103,7 @@ export class MapSync {
     }
 
     setMainMap(map) {
-        const result = this._validateMap(map);
-        if (!result) {
+        if (!this._validateMap(map)) {
             return this;
         }
         const d = this.find(map);
@@ -134,6 +131,6 @@ export class MapSync {
     }
 
     _validateMap(map) {
-        return map && map.getContainer && map.getContainer() && map.getView && map.setView;
+        return map && map.getContainer && map.getContainer() && map.getView && map.setView && map.on && map.off;
     }
 }
