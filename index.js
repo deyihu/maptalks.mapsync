@@ -10,6 +10,7 @@ export class MapSync {
             maps = [maps];
         }
         this.currentMap = null;
+        this._lock = false;
         this.list = maps.filter(map => {
             return this._validateMap(map);
         }).map(map => {
@@ -24,6 +25,9 @@ export class MapSync {
     }
 
     _containerMousemoveHandler(event) {
+        if (this._lock) {
+            return this;
+        }
         const target = event.currentTarget;
         const d = this.find(target);
         if (!d) {
@@ -103,6 +107,10 @@ export class MapSync {
     }
 
     setMainMap(map) {
+        if (this._lock) {
+            console.warn('current main map is lock,not change main map');
+            return this;
+        }
         if (!this._validateMap(map)) {
             return this;
         }
@@ -119,6 +127,20 @@ export class MapSync {
         this.currentMap = map;
         map.on(EVENTS, this._mapViewChangeHandler, this);
         return this;
+    }
+
+    lock() {
+        this._lock = true;
+        return this;
+    }
+
+    unLock() {
+        this._lock = false;
+        return this;
+    }
+
+    isLock() {
+        return this._lock;
     }
 
     dispose() {

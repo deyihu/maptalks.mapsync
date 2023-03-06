@@ -43,13 +43,14 @@
     }
 
     .panel {
-        right: 10px;
+        left: 10px;
         top: 10px;
         position: absolute;
         z-index: 1;
         background-color: white;
         border: 1px solid gray;
         padding: 20px;
+        border-radius: 5px;
     }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/maptalks/dist/maptalks.css">
@@ -59,9 +60,12 @@
 
 <body>
     <div class="panel">
-        <button onclick="addMap()">add map5 to sync</button><br><br>
-        <button onclick="removeMap()">remove map5 from sync</button><br><br>
-        <button onclick="setMainMap()">set map4 to main map</button>
+    
+        <input type="checkbox" id="addmap" /><label>add map5 to sync</label><br>
+        <input type="checkbox" id="lock" /><label>lock current map</label><br>
+        <!-- <button onclick="addMap()">add map5 to sync</button><br>
+        <button onclick="removeMap()">remove map5 from sync</button><br> -->
+        <button onclick="setMainMap()">set map4 to main map and lock</button><br>
     </div>
     <div class="container">
 
@@ -98,19 +102,42 @@
         const mapSyncControl = new maptalks.MapSync(maps.slice(0, 4));
 
 
-        function addMap() {
-            mapSyncControl.addMap(maps[4]);
-        }
+        // function addMap() {
+        //     mapSyncControl.addMap(maps[4]);
+        // }
 
-        function removeMap() {
-            mapSyncControl.removeMap(maps[4]);
-        }
+        // function removeMap() {
+        //     mapSyncControl.removeMap(maps[4]);
+        // }
 
+
+        const lockEle = document.querySelector('#lock');
+        const addmapEle = document.querySelector('#addmap');
 
         function setMainMap() {
+            mapSyncControl.unLock();
             mapSyncControl.setMainMap(maps[3]);
-            maps[3].setZoom(6);
+            maps[3].setZoom(maps[3].getZoom() + 1);
+            lockEle.checked = true;
+            mapSyncControl.lock();
         }
+
+        lockEle.addEventListener('change', function () {
+            const checked = this.checked;
+            if (checked) {
+                mapSyncControl.lock();
+            } else {
+                mapSyncControl.unLock();
+            }
+        })
+        addmapEle.addEventListener('change', function () {
+            const checked = this.checked;
+            if (checked) {
+                mapSyncControl.addMap(maps[4]);
+            } else {
+                mapSyncControl.removeMap(maps[4]);
+            }
+        })
 
     </script>
 </body>

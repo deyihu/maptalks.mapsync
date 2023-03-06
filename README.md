@@ -4,7 +4,7 @@
 
 The map will become the main map when the mouse enters the container of the map
 
-if you want switch main map ,you can use `setMainMap` method
+if you want switch main map , you can use `setMainMap` method
 
 ## Install
 
@@ -70,6 +70,24 @@ mapSyncControl.removeMap(map);
 
 ```js
 mapSyncControl.setMainMap(map);
+```
+
+* lock() `lock current map,the main map Will not be changed unless you unlock`
+
+```js
+mapSyncControl.lock();
+```
+
+* unLock() `unlock`
+
+```js
+mapSyncControl.unLock();
+```
+
+* isLock() 
+
+```js
+const isLock = mapSyncControl.isLock();
 ```
 
 * dispose()
