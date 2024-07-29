@@ -72,6 +72,12 @@ mapSyncControl.removeMap(map);
 mapSyncControl.setMainMap(map);
 ```
 
+* getMainMap()
+
+```js
+mapSyncControl.getMainMap();
+```
+
 * lock() `lock current map,the main map Will not be changed unless you unlock`
 
 ```js
@@ -91,3 +97,13 @@ const isLock = mapSyncControl.isLock();
 ```
 
 * dispose()
+
+### events
+
+* switchmainmap
+
+```js
+   mapSyncControl.on('switchmainmap', e => {
+       console.log(e, e.map === e.target.getMainMap());
+   })
+```

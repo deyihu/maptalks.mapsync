@@ -60,7 +60,7 @@
 
 <body>
     <div class="panel">
-    
+
         <input type="checkbox" id="addmap" /><label>add map5 to sync</label><br>
         <input type="checkbox" id="lock" /><label>lock current map</label><br>
         <!-- <button onclick="addMap()">add map5 to sync</button><br>
@@ -101,6 +101,15 @@
 
         const mapSyncControl = new maptalks.MapSync(maps.slice(0, 4));
 
+        try {
+
+            mapSyncControl.on('switchmainmap', e => {
+                console.log(e, e.map === e.target.getMainMap());
+            })
+
+        } catch (error) {
+          console.error(error);
+        }
 
         // function addMap() {
         //     mapSyncControl.addMap(maps[4]);
