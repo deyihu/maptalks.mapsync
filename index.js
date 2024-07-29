@@ -1,10 +1,14 @@
 
-import { DomUtil } from 'maptalks';
+import { DomUtil, Eventable } from 'maptalks';
 
 const EVENTS = 'moving moveend zooming zoomend pitch rotate animating';
 
-export class MapSync {
+function Base() {
+
+}
+export class MapSync extends Eventable(Base) {
     constructor(maps) {
+        super();
         maps = maps || [];
         if (!Array.isArray(maps)) {
             maps = [maps];
@@ -40,6 +44,7 @@ export class MapSync {
             this.currentMap = d.map;
             this.currentMap.on(EVENTS, this._mapViewChangeHandler, this);
             this._mapViewChangeHandler();
+            this.fire('switchmainmap', { map: this.currentMap });
         }
     }
 
@@ -126,7 +131,12 @@ export class MapSync {
         }
         this.currentMap = map;
         map.on(EVENTS, this._mapViewChangeHandler, this);
+        this.fire('switchmainmap', { map: this.currentMap });
         return this;
+    }
+
+    getMainMap() {
+        return this.currentMap;
     }
 
     lock() {
